@@ -19,6 +19,8 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -191,7 +193,12 @@ fun RegisterScreen(
                 leadingIcon = { Icon(Icons.Default.Lock, null) },
                 trailingIcon = {
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                        Text(if (passwordVisible) "Hide" else "Show")
+                        Icon(
+                            imageVector = if (passwordVisible) Icons.Filled.VisibilityOff
+                            else Icons.Filled.Visibility,
+                            contentDescription = if (passwordVisible) "Hide password"
+                            else "Show password"
+                        )
                     }
                 },
                 visualTransformation = if (passwordVisible) VisualTransformation.None
@@ -210,7 +217,12 @@ fun RegisterScreen(
                 leadingIcon = { Icon(Icons.Default.Lock, null) },
                 trailingIcon = {
                     IconButton(onClick = { confirmVisible = !confirmVisible }) {
-                        Text(if (confirmVisible) "Hide" else "Show")
+                        Icon(
+                            imageVector = if (confirmVisible) Icons.Filled.VisibilityOff
+                            else Icons.Filled.Visibility,
+                            contentDescription = if (confirmVisible) "Hide password"
+                            else "Show password"
+                        )
                     }
                 },
                 visualTransformation = if (confirmVisible) VisualTransformation.None

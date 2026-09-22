@@ -3,7 +3,7 @@ package com.example.prof_log_reg.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -64,15 +65,19 @@ fun AvatarScreen() {
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Stack: base first, features on top. All layers share the same
-            // Box so transparent PNGs align. Fractions tuned to screenshot.
-            Box(
+            // Proportional stack: positions/sizes are fractions of the Box
+            // so they scale with screen density like the reference.
+            // Mapping: 0004=base, 0001=brow, 0003=eye, 0002=nose, 0000=mouth.
+            BoxWithConstraints(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
                     .aspectRatio(0.72f),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.TopCenter
             ) {
+                val boxW = maxWidth
+                val boxH = maxHeight
+
                 Image(
                     painter = painterResource(id = R.drawable.face_0004),
                     contentDescription = "Base face",
@@ -84,9 +89,9 @@ fun AvatarScreen() {
                         painter = painterResource(id = R.drawable.face_0001),
                         contentDescription = "Brow",
                         modifier = Modifier
-                            .align(Alignment.Center)
-                            .offset(y = (-72).dp)
-                            .fillMaxWidth(0.62f)
+                            .align(Alignment.TopCenter)
+                            .offset(y = boxH * 0.295f)
+                            .width(boxW * 0.52f)
                             .aspectRatio(597f / 59f),
                         contentScale = ContentScale.Fit
                     )
@@ -96,9 +101,9 @@ fun AvatarScreen() {
                         painter = painterResource(id = R.drawable.face_0003),
                         contentDescription = "Eye",
                         modifier = Modifier
-                            .align(Alignment.Center)
-                            .offset(y = (-38).dp)
-                            .fillMaxWidth(0.63f)
+                            .align(Alignment.TopCenter)
+                            .offset(y = boxH * 0.345f)
+                            .width(boxW * 0.52f)
                             .aspectRatio(601f / 174f),
                         contentScale = ContentScale.Fit
                     )
@@ -108,9 +113,9 @@ fun AvatarScreen() {
                         painter = painterResource(id = R.drawable.face_0002),
                         contentDescription = "Nose",
                         modifier = Modifier
-                            .align(Alignment.Center)
-                            .offset(y = 28.dp)
-                            .fillMaxWidth(0.20f)
+                            .align(Alignment.TopCenter)
+                            .offset(y = boxH * 0.475f)
+                            .width(boxW * 0.165f)
                             .aspectRatio(181f / 126f),
                         contentScale = ContentScale.Fit
                     )
@@ -120,9 +125,9 @@ fun AvatarScreen() {
                         painter = painterResource(id = R.drawable.face_0000),
                         contentDescription = "Mouth",
                         modifier = Modifier
-                            .align(Alignment.Center)
-                            .offset(y = 78.dp)
-                            .fillMaxWidth(0.26f)
+                            .align(Alignment.TopCenter)
+                            .offset(y = boxH * 0.575f)
+                            .width(boxW * 0.225f)
                             .aspectRatio(237f / 131f),
                         contentScale = ContentScale.Fit
                     )

@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.prof_log_reg.screens.LoginScreen
 import com.example.prof_log_reg.screens.RegisterScreen
 
 @Composable
@@ -27,10 +28,9 @@ fun NavGraph(
         startDestination = Routes.LOGIN
     ) {
         composable(Routes.LOGIN) {
-            PlaceholderScreen(
-                title = "Login (skeleton — Issue 4)",
-                buttonLabel = "Go to Register",
-                onButton = { navController.navigate(Routes.REGISTER) }
+            LoginScreen(
+                navController = navController,
+                sessionViewModel = sessionViewModel
             )
         }
         composable(Routes.REGISTER) {

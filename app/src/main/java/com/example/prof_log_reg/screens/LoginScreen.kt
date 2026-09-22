@@ -38,8 +38,10 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.prof_log_reg.model.SessionViewModel
+import com.example.prof_log_reg.model.User
 import com.example.prof_log_reg.navigation.Routes
 import com.example.prof_log_reg.ui.theme.PinkTopBar
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -122,6 +124,34 @@ fun LoginScreen(
 
             Button(
                 onClick = {
+                    // Dev shortcut: fresh install has no account — log in with
+                    // a mock account so Avatar can be previewed without
+                    // re-registering every time.
+                    if (sessionViewModel.currentUser == null) {
+                        error = null
+                        sessionViewModel.register(
+                            User(
+                                firstName = "Demo",
+                                lastName = "User",
+                                username = username.trim().ifBlank { "demo" },
+                                email = "demo@example.com",
+                                password = password.ifBlank { "demo123" },
+                                phone = "08123456789",
+                                address = "Jl. Demo No. 1",
+                                birthDate = "01/01/2000"
+                            )
+                        )
+                        scope.launch {
+                            snackbar.showSnackbar("Logged in with mock account")
+                        }
+                        scope.launch {
+                            delay(600)
+                            navController.navigate(Routes.PROFILE) {
+                                popUpTo(Routes.LOGIN) { inclusive = true }
+                            }
+                        }
+                        return@Button
+                    }
                     if (username.isBlank() || password.isBlank()) {
                         error = "Username and password required"
                         return@Button
@@ -131,11 +161,7 @@ fun LoginScreen(
                             popUpTo(Routes.LOGIN) { inclusive = true }
                         }
                     } else {
-                        error = if (sessionViewModel.currentUser == null) {
-                            "No account yet — please Register first"
-                        } else {
-                            "Invalid username or password"
-                        }
+                        error = "Invalid username or password"
                     }
                 },
                 modifier = Modifier

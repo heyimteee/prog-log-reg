@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.prof_log_reg.screens.RegisterScreen
 
 @Composable
 fun NavGraph(
@@ -33,10 +34,9 @@ fun NavGraph(
             )
         }
         composable(Routes.REGISTER) {
-            PlaceholderScreen(
-                title = "Register (skeleton — Issue 3)",
-                buttonLabel = "Go to Profile",
-                onButton = { navController.navigate(Routes.PROFILE) }
+            RegisterScreen(
+                navController = navController,
+                sessionViewModel = sessionViewModel
             )
         }
         composable(Routes.PROFILE) {

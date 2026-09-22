@@ -17,7 +17,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 @Composable
-fun NavGraph(navController: NavHostController) {
+fun NavGraph(
+    navController: NavHostController,
+    sessionViewModel: com.example.prof_log_reg.model.SessionViewModel
+) {
     NavHost(
         navController = navController,
         startDestination = Routes.LOGIN

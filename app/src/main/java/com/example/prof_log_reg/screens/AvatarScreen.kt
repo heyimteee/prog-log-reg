@@ -90,8 +90,8 @@ fun AvatarScreen() {
                         contentDescription = "Brow",
                         modifier = Modifier
                             .align(Alignment.TopCenter)
-                            .offset(y = boxH * 0.295f)
-                            .width(boxW * 0.52f)
+                            .offset(y = boxH * 0.365f)
+                            .width(boxW * 0.68f)
                             .aspectRatio(597f / 59f),
                         contentScale = ContentScale.Fit
                     )
@@ -102,8 +102,8 @@ fun AvatarScreen() {
                         contentDescription = "Eye",
                         modifier = Modifier
                             .align(Alignment.TopCenter)
-                            .offset(y = boxH * 0.345f)
-                            .width(boxW * 0.52f)
+                            .offset(y = boxH * 0.400f)
+                            .width(boxW * 0.62f)
                             .aspectRatio(601f / 174f),
                         contentScale = ContentScale.Fit
                     )
@@ -114,8 +114,8 @@ fun AvatarScreen() {
                         contentDescription = "Nose",
                         modifier = Modifier
                             .align(Alignment.TopCenter)
-                            .offset(y = boxH * 0.475f)
-                            .width(boxW * 0.165f)
+                            .offset(y = boxH * 0.515f)
+                            .width(boxW * 0.185f)
                             .aspectRatio(181f / 126f),
                         contentScale = ContentScale.Fit
                     )
@@ -126,8 +126,8 @@ fun AvatarScreen() {
                         contentDescription = "Mouth",
                         modifier = Modifier
                             .align(Alignment.TopCenter)
-                            .offset(y = boxH * 0.575f)
-                            .width(boxW * 0.225f)
+                            .offset(y = boxH * 0.620f)
+                            .width(boxW * 0.325f)
                             .aspectRatio(237f / 131f),
                         contentScale = ContentScale.Fit
                     )
